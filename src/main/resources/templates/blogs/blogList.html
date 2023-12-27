@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Blog Managers</title>
+    <title>Manage Blog Posts</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="container mx-auto p-8">
+    <h1 class="text-3xl font-semibold mb-6">Manage Blog Posts</h1>
+    <div class="my-5">
+        <a href="/blog/create" class="px-3 py-2 bg-blue-500 text-white my-3">Create Blog</a>
+    </div>
+    <table class="w-full bg-white border rounded-md shadow-md">
+        <thead>
+        <tr class="bg-blue-500 text-white">
+            <th class="py-2 px-4">ID</th>
+            <th class="py-2 px-4">Title</th>
+            <th class="py-2 px-4">Content</th>
+            <th class="py-2 px-4">Created At</th>
+            <th class="py-2 px-4">Modified At</th>
+            <th class="py-2 px-4">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Replace the following rows with data from your database -->
+        <tr th:each="blog : ${blogList}">
+            <td class="py-2 px-4 text-center" th:text="${blog.id}"></td>
+            <td class="py-2 px-4 text-center" th:text="${blog.title}"></td>
+            <td class="py-2 px-4 text-center" th:text="${blog.content}"></td>
+            <td class="py-2 px-4 text-center" th:text="${blog.createdAt}"></td>
+            <td class="py-2 px-4 text-center" th:text="${blog.modifiedAt}"></td>
+            <td class="py-2 px-4 text-center">
+                <button>
+                    <a th:href="@{/blog/remove/{id}(id=${blog.id})}">Remove</a>
+                </button>
+            </td>
+        </tr>
+        <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
